@@ -26,7 +26,7 @@
   },
   "lint-staged": {
     "apps/web/**/*.{ts,tsx}": [
-      "eslint --fix --config apps/web/eslint.config.js",
+      "eslint --fix --config apps/web/eslint.config.mjs",
       "prettier --write"
     ],
     "apps/server/**/*.ts": [
