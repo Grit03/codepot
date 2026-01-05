@@ -11,7 +11,22 @@
   "license": "ISC",
   "packageManager": "pnpm@10.27.0",
   "devDependencies": {
+    "@commitlint/cli": "^20.3.0",
+    "@commitlint/config-conventional": "^20.3.0",
     "husky": "^9.1.7",
     "lint-staged": "^16.2.7"
+  },
+  "lint-staged": {
+    "apps/web/**/*.{ts,tsx}": [
+      "eslint --fix --config apps/web/eslint.config.js",
+      "prettier --write"
+    ],
+    "apps/server/**/*.ts": [
+      "eslint --fix --config apps/server/eslint.config.mjs",
+      "prettier --write"
+    ],
+    "*.{js,json,css,md,yaml,yml}": [
+      "prettier --write"
+    ]
   }
 }
