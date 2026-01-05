@@ -1,0 +1,98 @@
+name: PR Auto Labeler
+
+on:
+  pull_request:
+    types: [opened, reopened, edited]
+
+jobs:
+  add-label:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+
+    steps:
+      - name: Add Label based on Branch Name
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const branchName = context.payload.pull_request.head.ref;
+
+            const labelMap = {
+              'feat': '✨ feat',
+              'fix': '🐛 fix',
+              'chore': '⚙️ chore',
+              'refactor': '♻️ refactor',
+              'style': '🎀 style',
+              'docs': '📝 docs',
+              'test': '🧪 test',
+              'revert': '🔙 revert',
+              'hotfix': '🔥 hotfix',
+            };
+
+            const prefix = branchName.split('/')[0];
+
+            if (labelMap[prefix]) {
+              await github.rest.issues.addLabels({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                labels: [labelMap[prefix]]
+              });
+              console.log(`라벨 추가 완료: ${labelMap[prefix]}`);
+            } else {
+              console.log('매칭되는 라벨 패턴이 없습니다.');
+            }
+
+      - name: Add Label based on Workspace Checkbox
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const body = context.payload.pull_request.body || '';
+
+            const workspaceLabels = {
+              'web': '🌐 web',
+              'server': '🖥️ server',
+            };
+
+            const labelsToAdd = [];
+            const labelsToRemove = [];
+
+            for (const [workspace, label] of Object.entries(workspaceLabels)) {
+              // 체크된 체크박스 패턴: - [x] web 또는 - [X] web
+              const checkedPattern = new RegExp(`-\\s*\\[\\s*[xX]\\s*\\]\\s*${workspace}`, 'i');
+              // 체크 안된 체크박스 패턴: - [ ] web
+              const uncheckedPattern = new RegExp(`-\\s*\\[\\s*\\]\\s*${workspace}`, 'i');
+
+              if (checkedPattern.test(body)) {
+                labelsToAdd.push(label);
+              } else if (uncheckedPattern.test(body)) {
+                labelsToRemove.push(label);
+              }
+            }
+
+            // 라벨 추가
+            if (labelsToAdd.length > 0) {
+              await github.rest.issues.addLabels({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                labels: labelsToAdd
+              });
+              console.log(`Workspace 라벨 추가: ${labelsToAdd.join(', ')}`);
+            }
+
+            // 라벨 제거 (체크 해제 시)
+            for (const label of labelsToRemove) {
+              try {
+                await github.rest.issues.removeLabel({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: context.issue.number,
+                  name: label
+                });
+                console.log(`Workspace 라벨 제거: ${label}`);
+              } catch (e) {
+                // 라벨이 없으면 무시
+                console.log(`라벨 ${label}이(가) 없어서 제거 건너뜀`);
+              }
+            }
