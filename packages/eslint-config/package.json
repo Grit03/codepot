@@ -4,9 +4,9 @@
   "private": true,
   "type": "module",
   "exports": {
-    "./prettier": "./prettier.mjs"
+    ".": "./index.js"
   },
-  "devDependencies": {
+  "dependencies": {
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.4"
   }

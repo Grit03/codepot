@@ -1,10 +1,14 @@
 import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
 
-export const prettierConfig = [
+/** @type {import('typescript-eslint').ConfigArray} */
+export const baseEslintConfig = [
   eslintPluginPrettierRecommended,
   {
     rules: {
-      'prettier/prettier': ['error', { endOfLine: 'auto' }],
+      'prettier/prettier': /** @type {const} */ ([
+        'error',
+        { endOfLine: 'auto' },
+      ]),
     },
   },
 ];
