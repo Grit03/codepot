@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# 의존성 변경 시 자동 pnpm install
+changed_files=$(git diff-tree -r --name-only --no-commit-id ORIG_HEAD HEAD)
+
+if echo "$changed_files" | grep -qE "package\.json|pnpm-lock\.yaml"; then
+  echo "📦 의존성 변경 감지! pnpm install 실행 중..."
+  pnpm install
+  echo "✅ 의존성 설치 완료!"
+fi

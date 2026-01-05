@@ -1,0 +1,14 @@
+#!/bin/sh
+
+# rebase 또는 amend 후 package.json 또는 pnpm-lock.yaml 변경 감지
+
+# $1은 rebase인지 amend인지 구분
+case "$1" in
+  rebase)
+    changed_files=$(git diff-tree -r --name-only --no-commit-id ORIG_HEAD HEAD)
+    if echo "$changed_files" | grep -qE "package\.json|pnpm-lock\.yaml"; then
+      echo "📦 의존성 변경 감지! pnpm install 실행 중..."
+      pnpm install
+    fi
+    ;;
+esac
