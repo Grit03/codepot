@@ -71,6 +71,9 @@ importers:
       '@nestjs/platform-express':
         specifier: ^11.0.1
         version: 11.1.11(@nestjs/common@11.1.11(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.11)
+      '@nestjs/swagger':
+        specifier: ^11.2.4
+        version: 11.2.4(@nestjs/common@11.1.11(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.11)(reflect-metadata@0.2.2)
       reflect-metadata:
         specifier: ^0.2.2
         version: 0.2.2
@@ -1885,6 +1888,12 @@ packages:
         integrity: sha512-fo+QhuU3qE/2TQMQmbVMqaQ6EWbMhi4ABWP+O4AM1NqPBuy0OrApV5LO6BrrgnhtAHS2NH6RrVk9OL181tTi8A==,
       }
 
+  '@microsoft/tsdoc@0.16.0':
+    resolution:
+      {
+        integrity: sha512-xgAyonlVVS+q7Vc7qLW0UrJU7rSFcETRWsqdXZtjzRU8dF+6CkozTK4V4y1LwOX7j8r/vHphjDeMeGI4tNGeGA==,
+      }
+
   '@napi-rs/wasm-runtime@0.2.12':
     resolution:
       {
@@ -1944,6 +1953,22 @@ packages:
       '@nestjs/websockets':
         optional: true
 
+  '@nestjs/mapped-types@2.1.0':
+    resolution:
+      {
+        integrity: sha512-W+n+rM69XsFdwORF11UqJahn4J3xi4g/ZEOlJNL6KoW5ygWSmBB2p0S2BZ4FQeS/NDH72e6xIcu35SfJnE8bXw==,
+      }
+    peerDependencies:
+      '@nestjs/common': ^10.0.0 || ^11.0.0
+      class-transformer: ^0.4.0 || ^0.5.0
+      class-validator: ^0.13.0 || ^0.14.0
+      reflect-metadata: ^0.1.12 || ^0.2.0
+    peerDependenciesMeta:
+      class-transformer:
+        optional: true
+      class-validator:
+        optional: true
+
   '@nestjs/platform-express@11.1.11':
     resolution:
       {
@@ -1960,6 +1985,26 @@ packages:
       }
     peerDependencies:
       typescript: '>=4.8.2'
+
+  '@nestjs/swagger@11.2.4':
+    resolution:
+      {
+        integrity: sha512-7MLqtHfD2qfhZUyg13FyX6liwigtXUL8gHXq7PaBcGo9cu8QWDDT//Fn3qzJx59+Wh+Ly/Zn+prCMpskPI5nrQ==,
+      }
+    peerDependencies:
+      '@fastify/static': ^8.0.0 || ^9.0.0
+      '@nestjs/common': ^11.0.1
+      '@nestjs/core': ^11.0.1
+      class-transformer: '*'
+      class-validator: '*'
+      reflect-metadata: ^0.1.12 || ^0.2.0
+    peerDependenciesMeta:
+      '@fastify/static':
+        optional: true
+      class-transformer:
+        optional: true
+      class-validator:
+        optional: true
 
   '@nestjs/testing@11.1.11':
     resolution:
@@ -2379,6 +2424,12 @@ packages:
     resolution:
       {
         integrity: sha512-zt6OdqaDoOnJ1ZYsCYGt9YmWzDXl4vQdKTyJev62gFhRGKdx7mcT54V9KIjg+d2wi9EXsPvAPKe7i7WjfVWB8g==,
+      }
+
+  '@scarf/scarf@1.4.0':
+    resolution:
+      {
+        integrity: sha512-xxeapPiUXdZAE3che6f3xogoJPeZgig6omHEy1rIY5WVsB3H2BHNnZH+gHG6x91SCWyQCzWGsuL2Hh3ClO5/qQ==,
       }
 
   '@sinclair/typebox@0.34.46':
@@ -8968,6 +9019,12 @@ packages:
       }
     engines: { node: '>= 0.4' }
 
+  swagger-ui-dist@5.31.0:
+    resolution:
+      {
+        integrity: sha512-zSUTIck02fSga6rc0RZP3b7J7wgHXwLea8ZjgLA3Vgnb8QeOl3Wou2/j5QkzSGeoz6HusP/coYuJl33aQxQZpg==,
+      }
+
   symbol-observable@4.0.0:
     resolution:
       {
@@ -11059,6 +11116,8 @@ snapshots:
       globby: 11.1.0
       read-yaml-file: 1.1.0
 
+  '@microsoft/tsdoc@0.16.0': {}
+
   '@napi-rs/wasm-runtime@0.2.12':
     dependencies:
       '@emnapi/core': 1.8.1
@@ -11118,6 +11177,11 @@ snapshots:
     optionalDependencies:
       '@nestjs/platform-express': 11.1.11(@nestjs/common@11.1.11(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.11)
 
+  '@nestjs/mapped-types@2.1.0(@nestjs/common@11.1.11(reflect-metadata@0.2.2)(rxjs@7.8.2))(reflect-metadata@0.2.2)':
+    dependencies:
+      '@nestjs/common': 11.1.11(reflect-metadata@0.2.2)(rxjs@7.8.2)
+      reflect-metadata: 0.2.2
+
   '@nestjs/platform-express@11.1.11(@nestjs/common@11.1.11(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.11)':
     dependencies:
       '@nestjs/common': 11.1.11(reflect-metadata@0.2.2)(rxjs@7.8.2)
@@ -11140,6 +11204,18 @@ snapshots:
       typescript: 5.9.3
     transitivePeerDependencies:
       - chokidar
+
+  '@nestjs/swagger@11.2.4(@nestjs/common@11.1.11(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.11)(reflect-metadata@0.2.2)':
+    dependencies:
+      '@microsoft/tsdoc': 0.16.0
+      '@nestjs/common': 11.1.11(reflect-metadata@0.2.2)(rxjs@7.8.2)
+      '@nestjs/core': 11.1.11(@nestjs/common@11.1.11(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/platform-express@11.1.11)(reflect-metadata@0.2.2)(rxjs@7.8.2)
+      '@nestjs/mapped-types': 2.1.0(@nestjs/common@11.1.11(reflect-metadata@0.2.2)(rxjs@7.8.2))(reflect-metadata@0.2.2)
+      js-yaml: 4.1.1
+      lodash: 4.17.21
+      path-to-regexp: 8.3.0
+      reflect-metadata: 0.2.2
+      swagger-ui-dist: 5.31.0
 
   '@nestjs/testing@11.1.11(@nestjs/common@11.1.11(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.11)(@nestjs/platform-express@11.1.11)':
     dependencies:
@@ -11311,6 +11387,8 @@ snapshots:
     optional: true
 
   '@rtsao/scc@1.1.0': {}
+
+  '@scarf/scarf@1.4.0': {}
 
   '@sinclair/typebox@0.34.46': {}
 
@@ -12810,7 +12888,7 @@ snapshots:
       eslint: 9.39.2(jiti@2.6.1)
       eslint-import-resolver-node: 0.3.9
       eslint-import-resolver-typescript: 3.10.1(eslint-plugin-import@2.32.0(eslint@9.39.2(jiti@2.6.1)))(eslint@9.39.2(jiti@2.6.1))
-      eslint-plugin-import: 2.32.0(eslint-import-resolver-typescript@3.10.1(eslint-plugin-import@2.32.0(eslint@9.39.2(jiti@2.6.1)))(eslint@9.39.2(jiti@2.6.1)))(eslint@9.39.2(jiti@2.6.1))
+      eslint-plugin-import: 2.32.0(eslint-import-resolver-typescript@3.10.1)(eslint@9.39.2(jiti@2.6.1))
       eslint-plugin-jsx-a11y: 6.10.2(eslint@9.39.2(jiti@2.6.1))
       eslint-plugin-react: 7.37.5(eslint@9.39.2(jiti@2.6.1))
       eslint-plugin-react-hooks: 7.0.1(eslint@9.39.2(jiti@2.6.1))
@@ -12847,7 +12925,7 @@ snapshots:
       tinyglobby: 0.2.15
       unrs-resolver: 1.11.1
     optionalDependencies:
-      eslint-plugin-import: 2.32.0(eslint-import-resolver-typescript@3.10.1(eslint-plugin-import@2.32.0(eslint@9.39.2(jiti@2.6.1)))(eslint@9.39.2(jiti@2.6.1)))(eslint@9.39.2(jiti@2.6.1))
+      eslint-plugin-import: 2.32.0(eslint-import-resolver-typescript@3.10.1)(eslint@9.39.2(jiti@2.6.1))
     transitivePeerDependencies:
       - supports-color
 
@@ -12861,7 +12939,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-plugin-import@2.32.0(eslint-import-resolver-typescript@3.10.1(eslint-plugin-import@2.32.0(eslint@9.39.2(jiti@2.6.1)))(eslint@9.39.2(jiti@2.6.1)))(eslint@9.39.2(jiti@2.6.1)):
+  eslint-plugin-import@2.32.0(eslint-import-resolver-typescript@3.10.1)(eslint@9.39.2(jiti@2.6.1)):
     dependencies:
       '@rtsao/scc': 1.1.0
       array-includes: 3.1.9
@@ -15549,6 +15627,10 @@ snapshots:
       has-flag: 4.0.0
 
   supports-preserve-symlinks-flag@1.0.0: {}
+
+  swagger-ui-dist@5.31.0:
+    dependencies:
+      '@scarf/scarf': 1.4.0
 
   symbol-observable@4.0.0: {}
 
